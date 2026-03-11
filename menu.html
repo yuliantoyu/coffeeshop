@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Menu | NOVA Coffee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #0066FF;
+            --primary-light: #3385FF;
+            --primary-dark: #0052CC;
+            --bg-white: #FFFFFF;
+            --bg-light: #F8FAFC;
+            --text-dark: #0F172A;
+            --text-gray: #64748B;
+            --border: #E2E8F0;
+            --accent-brown: #8B5A2B;
+            --accent-gold: #D4A574;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding-bottom: 90px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-white);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .location svg {
+            width: 16px;
+            height: 16px;
+            color: var(--primary);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            margin: 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::after {
+            content: '☕';
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: 120px;
+            opacity: 0.15;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 12px;
+        }
+
+        /* Search */
+        .search-bar {
+            padding: 0 15px 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            font-size: 0.95rem;
+            background: var(--bg-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394A3B8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E") 15px center/18px no-repeat;
+            outline: none;
+        }
+
+        /* Categories Scroll */
+        .categories {
+            display: flex;
+            gap: 10px;
+            padding: 0 15px 15px;
+            overflow-x: auto;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 18px;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            min-width: 75px;
+            transition: all 0.2s;
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .category-btn.active span {
+            color: white;
+        }
+
+        .category-emoji {
+            font-size: 1.5rem;
+        }
+
+        .category-btn span {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        /* Section */
+        .section {
+            padding: 15px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .section-link {
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Product List */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .product-item {
+            display: flex;
+            gap: 15px;
+            background: var(--bg-white);
+            padding: 15px;
+            border-radius: 16px;
+            align-items: center;
+        }
+
+        .product-img {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-badges {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+
+        .badge {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .badge-new {
+            background: #DCFCE7;
+            color: #16A34A;
+        }
+
+        .badge-popular {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .badge-promo {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .product-desc {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .product-price small {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+
+        .add-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-white);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: var(--text-gray);
+            font-size: 0.75rem;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item span:first-child {
+            font-size: 1.5rem;
+        }
+
+        .nav-cart {
+            position: relative;
+        }
+
+        .nav-cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: #EF4444;
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Cart Bar */
+        .cart-bar {
+            position: fixed;
+            bottom: 65px;
+            left: 15px;
+            right: 15px;
+            background: var(--primary);
+            border-radius: 16px;
+            padding: 15px 20px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+            z-index: 99;
+        }
+
+        .cart-bar.show {
+            display: flex;
+        }
+
+        .cart-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .cart-info {
+            flex: 1;
+            color: white;
+        }
+
+        .cart-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .cart-total {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .cart-checkout {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            display: none;
+            align-items: flex-end;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .cart-modal {
+            background: var(--bg-white);
+            width: 100%;
+            max-height: 80vh;
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-light);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-items {
+            padding: 20px;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-img {
+            width: 55px;
+            height: 55px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .qty-value {
+            font-weight: 600;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-light);
+        }
+
+        .modal-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .modal-total-label {
+            color: var(--text-gray);
+        }
+
+        .modal-total-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Success */
+        .success-modal {
+            background: var(--bg-white);
+            width: 100%;
+            max-width: 350px;
+            margin: auto;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #DCFCE7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+        }
+
+        .success-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .success-desc {
+            color: var(--text-gray);
+            margin-bottom: 25px;
+        }
+
+        .success-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Promo Tag */
+        .promo-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #EF4444;
+            color: white;
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">NOVA COFFEE</div>
+            <div class="header-icons">
+                <div class="header-icon">🔔</div>
+                <div class="header-icon">👤</div>
+            </div>
+        </div>
+        <div class="location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Jakarta Selatan • Diantar dalam 15 menit
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <div class="hero-title">Weekend Special! 🎉</div>
+        <div class="hero-desc">Diskon 20% untuk semua menu coffee</div>
+        <span class="hero-badge">Berlaku hingga Minggu</span>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Cari menu favoritmu..." id="searchInput" oninput="searchProducts()">
+    </div>
+
+    <!-- Categories -->
+    <div class="categories" id="categories">
+        <div class="category-btn active" onclick="filterCategory('all', this)">
+            <span class="category-emoji">🍽️</span>
+            <span>Semua</span>
+        </div>
+        <div class="category-btn" onclick="filterCategory('coffee', this)">
+            <span class="category-emoji">☕</span>
+            <span>Coffee</span>
+        </div>
+        <div class="category-btn" onclick="filterCategory('non-coffee', this)">
+            <span class="category-emoji">🧋</span>
+            <span>Non Coffee</span>
+        </div>
+        <div class="category-btn" onclick="filterCategory('tea', this)">
+            <span class="category-emoji">🍵</span>
+            <span>Tea</span>
+        </div>
+        <div class="category-btn" onclick="filterCategory('frappe', this)">
+            <span class="category-emoji">🧊</span>
+            <span>Frappe</span>
+        </div>
+        <div class="category-btn" onclick="filterCategory('food', this)">
+            <span class="category-emoji">🍝</span>
+            <span>Foods</span>
+        </div>
+        <div class="category-btn" onclick="filterCategory('snack', this)">
+            <span class="category-emoji">🥐</span>
+            <span>Snacks</span>
+        </div>
+        <div class="category-btn" onclick="filterCategory('dessert', this)">
+            <span class="category-emoji">🍰</span>
+            <span>Dessert</span>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">📋 Menu Lengkap</h2>
+            <span class="section-link" id="itemCount">48 items</span>
+        </div>
+        <div class="product-list" id="productList"></div>
+    </div>
+
+    <!-- Cart Bar -->
+    <div class="cart-bar" id="cartBar">
+        <div class="cart-icon">🛒</div>
+        <div class="cart-info">
+            <div class="cart-label" id="cartItemCount">0 item</div>
+            <div class="cart-total" id="cartBarTotal">Rp 0</div>
+        </div>
+        <button class="cart-checkout" onclick="openCartModal()">Checkout</button>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <span>🏠</span>
+            <span>Beranda</span>
+        </div>
+        <div class="nav-item">
+            <span>🔍</span>
+            <span>Cari</span>
+        </div>
+        <div class="nav-item nav-cart" onclick="openCartModal()">
+            <span>🛒</span>
+            <span>Keranjang</span>
+            <span class="nav-cart-badge" id="navCartBadge" style="display:none">0</span>
+        </div>
+        <div class="nav-item">
+            <span>❤️</span>
+            <span>Favorit</span>
+        </div>
+        <div class="nav-item">
+            <span>👤</span>
+            <span>Akun</span>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="cart-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Keranjang Belanja</h3>
+                <button class="modal-close" onclick="closeCartModal()">✕</button>
+            </div>
+            <div class="modal-items" id="cartItemsList"></div>
+            <div class="modal-footer">
+                <div class="modal-total">
+                    <span class="modal-total-label">Total</span>
+                    <span class="modal-total-value" id="modalTotal">Rp 0</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">Bayar Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="success-modal">
+            <div class="success-icon">✅</div>
+            <h3 class="success-title">Order Berhasil!</h3>
+            <p class="success-desc" id="successDesc">Pesananmu sedang diproses.</p>
+            <button class="success-btn" onclick="closeSuccessModal()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            // Coffee - 10 items
+            { id: 1, name: 'Americano', desc: 'Double shot espresso dengan air panas', price: 22000, category: 'coffee', emoji: '☕', badge: 'popular' },
+            { id: 2, name: 'Caffe Latte', desc: 'Espresso dengan susu steamed lembut', price: 28000, category: 'coffee', emoji: '🥛', badge: 'popular' },
+            { id: 3, name: 'Cappuccino', desc: 'Espresso dengan foam susu tebal', price: 28000, category: 'coffee', emoji: '☕' },
+            { id: 4, name: 'Caramel Macchiato', desc: 'Vanilla, susu, espresso, dan caramel', price: 35000, category: 'coffee', emoji: '🍯', badge: 'new' },
+            { id: 5, name: 'Mocha', desc: 'Espresso dengan coklat dan susu', price: 32000, category: 'coffee', emoji: '🍫' },
+            { id: 6, name: 'Espresso', desc: 'Single shot espresso murni', price: 18000, category: 'coffee', emoji: '☕' },
+            { id: 7, name: 'Espresso Con Panna', desc: 'Espresso dengan whipped cream', price: 22000, category: 'coffee', emoji: '☕' },
+            { id: 8, name: 'Flat White', desc: 'Double espresso dengan microfoam', price: 30000, category: 'coffee', emoji: '🥛', badge: 'new' },
+            { id: 9, name: 'Cortado', desc: 'Espresso dengan sedikit susu hangat', price: 25000, category: 'coffee', emoji: '☕' },
+            { id: 10, name: 'Affogato', desc: 'Espresso dengan scoop gelato vanilla', price: 35000, category: 'coffee', emoji: '🍦' },
+
+            // Non Coffee - 8 items
+            { id: 11, name: 'Hot Chocolate', desc: 'Coklat premium dengan susu hangat', price: 25000, category: 'non-coffee', emoji: '🍫', badge: 'popular' },
+            { id: 12, name: 'Matcha Latte', desc: 'Premium matcha dengan susu segar', price: 30000, category: 'non-coffee', emoji: '🍵', badge: 'new' },
+            { id: 13, name: 'Red Velvet', desc: 'Creamy red velvet dengan cream cheese', price: 32000, category: 'non-coffee', emoji: '🍰' },
+            { id: 14, name: 'Taro Latte', desc: 'Taro asli dengan susu segar', price: 28000, category: 'non-coffee', emoji: '🟣' },
+            { id: 15, name: 'Hazelnut Latte', desc: 'Hazelnut syrup dengan susu steamed', price: 30000, category: 'non-coffee', emoji: '🥜' },
+            { id: 16, name: 'Vanilla Latte', desc: 'Vanilla syrup dengan susu dan espresso', price: 28000, category: 'non-coffee', emoji: '🍦' },
+            { id: 17, name: 'Caramel Latte', desc: 'Caramel dengan susu dan espresso', price: 30000, category: 'non-coffee', emoji: '🍯' },
+            { id: 18, name: 'Ovomaltine', desc: 'Minuman malt chocolate klasik', price: 28000, category: 'non-coffee', emoji: '🥛' },
+
+            // Tea - 6 items
+            { id: 19, name: 'Earl Grey Tea', desc: 'Teh hitam dengan aroma bergamot', price: 20000, category: 'tea', emoji: '🍵' },
+            { id: 20, name: 'Chamomile Tea', desc: 'Teh herbal menenangkan', price: 22000, category: 'tea', emoji: '🌼' },
+            { id: 21, name: 'Green Tea Latte', desc: 'Matcha dengan susu segar', price: 28000, category: 'tea', emoji: '🍵', badge: 'popular' },
+            { id: 22, name: 'Thai Tea', desc: 'Thai tea dengan susu condensed', price: 25000, category: 'tea', emoji: '🧋', badge: 'popular' },
+            { id: 23, name: 'Lemon Tea', desc: 'Teh segar dengan lemon', price: 18000, category: 'tea', emoji: '🍋' },
+            { id: 24, name: 'Peach Tea', desc: 'Teh dengan aroma peach segar', price: 20000, category: 'tea', emoji: '🍑' },
+
+            // Frappe - 8 items
+            { id: 25, name: 'Java Chip Frappe', desc: 'Blended coffee dengan choco chips', price: 38000, category: 'frappe', emoji: '🧊', badge: 'popular' },
+            { id: 26, name: 'Caramel Frappe', desc: 'Blended coffee dengan caramel', price: 38000, category: 'frappe', emoji: '🍯' },
+            { id: 27, name: 'Mocha Frappe', desc: 'Blended mocha dengan whipped cream', price: 38000, category: 'frappe', emoji: '🍫' },
+            { id: 28, name: 'Green Tea Frappe', desc: 'Blended matcha dengan ice', price: 35000, category: 'frappe', emoji: '🍵', badge: 'new' },
+            { id: 29, name: 'Strawberry Frappe', desc: 'Blended strawberry segar', price: 32000, category: 'frappe', emoji: '🍓' },
+            { id: 30, name: 'Mango Frappe', desc: 'Blended mango tropis', price: 32000, category: 'frappe', emoji: '🥭' },
+            { id: 31, name: 'Oreo Frappe', desc: 'Blended oreo dengan vanilla', price: 35000, category: 'frappe', emoji: '🍪' },
+            { id: 32, name: 'Taro Frappe', desc: 'Blended taro creamy', price: 32000, category: 'frappe', emoji: '🟣' },
+
+            // Food - 8 items
+            { id: 33, name: 'Croissant', desc: 'Butter croissant freshly baked', price: 25000, category: 'food', emoji: '🥐', badge: 'popular' },
+            { id: 34, name: 'Almond Croissant', desc: 'Croissant dengan almond dan cream', price: 32000, category: 'food', emoji: '🥐' },
+            { id: 35, name: 'Club Sandwich', desc: 'Triple decker dengan ayam dan sayuran', price: 38000, category: 'food', emoji: '🥪', badge: 'new' },
+            { id: 36, name: 'Smoked Beef Sandwich', desc: 'Smoked beef dengan keju dan saus', price: 40000, category: 'food', emoji: '🥪' },
+            { id: 37, name: 'Spaghetti Carbonara', desc: 'Pasta dengan saus cream dan bacon', price: 48000, category: 'food', emoji: '🍝', badge: 'popular' },
+            { id: 38, name: 'Spaghetti Aglio Olio', desc: 'Pasta dengan garlic dan olive oil', price: 42000, category: 'food', emoji: '🍝' },
+            { id: 39, name: 'Nasi Goreng', desc: 'Nasi goreng spesial dengan telur', price: 35000, category: 'food', emoji: '🍚' },
+            { id: 40, name: 'Chicken Wings', desc: '6 pcs chicken wings dengan saus pilihan', price: 45000, category: 'food', emoji: '🍗', badge: 'new' },
+
+            // Snack - 5 items
+            { id: 41, name: 'French Fries', desc: 'Kentang goreng renyah dengan saus', price: 20000, category: 'snack', emoji: '🍟', badge: 'popular' },
+            { id: 42, name: 'Loaded Fries', desc: 'Fries dengan keju dan bacon bits', price: 35000, category: 'snack', emoji: '🍟' },
+            { id: 43, name: 'Banana Bread', desc: 'Roti pisang homemade hangat', price: 22000, category: 'snack', emoji: '🍌' },
+            { id: 44, name: 'Garlic Bread', desc: 'Roti dengan garlic butter', price: 18000, category: 'snack', emoji: '🥖' },
+            { id: 45, name: 'Onion Rings', desc: 'Onion crispy dengan saus', price: 22000, category: 'snack', emoji: '🧅' },
+
+            // Dessert - 5 items
+            { id: 46, name: 'Cheesecake', desc: 'New York style cheesecake', price: 38000, category: 'dessert', emoji: '🍰', badge: 'popular' },
+            { id: 47, name: 'Brownies', desc: 'Fudgy chocolate brownies', price: 28000, category: 'dessert', emoji: '🍫' },
+            { id: 48, name: 'Tiramisu', desc: 'Classic Italian dessert', price: 35000, category: 'dessert', emoji: '🍰', badge: 'new' },
+            { id: 49, name: 'Chocolate Lava', desc: 'Lava cake dengan es krim vanilla', price: 40000, category: 'dessert', emoji: '🍫' },
+            { id: 50, name: 'Ice Cream Gelato', desc: '3 scoop gelato pilihan rasa', price: 32000, category: 'dessert', emoji: '🍦' },
+        ];
+
+        let cart = [];
+        let currentCategory = 'all';
+
+        function formatRupiah(num) {
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        function renderProducts(filter = '') {
+            const list = document.getElementById('productList');
+            const countEl = document.getElementById('itemCount');
+            let filtered = products;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === currentCategory);
+            }
+
+            if (filter) {
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(filter.toLowerCase()) ||
+                    p.desc.toLowerCase().includes(filter.toLowerCase())
+                );
+            }
+
+            countEl.textContent = `${filtered.length} items`;
+
+            list.innerHTML = filtered.map(p => `
+                <div class="product-item">
+                    <div class="product-img">${p.emoji}</div>
+                    <div class="product-info">
+                        <div class="product-badges">
+                            ${p.badge === 'new' ? '<span class="badge badge-new">NEW</span>' : ''}
+                            ${p.badge === 'popular' ? '<span class="badge badge-popular">POPULAR</span>' : ''}
+                            ${p.badge === 'promo' ? '<span class="badge badge-promo">PROMO</span>' : ''}
+                        </div>
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-desc">${p.desc}</div>
+                        <div class="product-footer">
+                            <span class="product-price">${formatRupiah(p.price)}</span>
+                            <button class="add-btn" onclick="addToCart(${p.id})">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(category, el) {
+            currentCategory = category;
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            searchProducts();
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value;
+            renderProducts(query);
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartBar();
+        }
+
+        function updateQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+            }
+            updateCartBar();
+            renderCartItems();
+        }
+
+        function updateCartBar() {
+            const bar = document.getElementById('cartBar');
+            const count = document.getElementById('cartItemCount');
+            const total = document.getElementById('cartBarTotal');
+            const badge = document.getElementById('navCartBadge');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            if (cart.length > 0) {
+                bar.classList.add('show');
+                badge.style.display = 'block';
+                badge.textContent = totalItems;
+                count.textContent = `${totalItems} item`;
+                total.textContent = formatRupiah(totalPrice);
+            } else {
+                bar.classList.remove('show');
+                badge.style.display = 'none';
+            }
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cartItemsList');
+            const total = document.getElementById('modalTotal');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-gray)">Keranjang kosong</div>';
+                total.textContent = 'Rp 0';
+                return;
+            }
+
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-img">${item.emoji}</div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${formatRupiah(item.price)}</div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">−</button>
+                            <span class="qty-value">${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            total.textContent = formatRupiah(totalPrice);
+        }
+
+        function openCartModal() {
+            renderCartItems();
+            document.getElementById('cartModal').classList.add('show');
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').classList.remove('show');
+        }
+
+        function checkout() {
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+
+            document.getElementById('successDesc').textContent = 
+                `Total: ${formatRupiah(totalPrice)} (${totalItems} item). Pesananmu sedang diproses.`;
+            
+            document.getElementById('cartModal').classList.remove('show');
+            document.getElementById('successModal').classList.add('show');
+            
+            cart = [];
+            updateCartBar();
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('show');
+        }
+
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) closeCartModal();
+        });
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSuccessModal();
+        });
+
+        renderProducts();
+    </script>
+</body>
+</html>
