@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA Coffee | Future of Taste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0b;
+            --bg-card: #141416;
+            --accent: #c9a962;
+            --accent-light: #e8d5a3;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a8e;
+            --border: #2a2a2e;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 25px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse at 70% 50%, rgba(201, 169, 98, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(201, 169, 98, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 169, 98, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateY(-10deg);
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 10;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 450px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-dark);
+            border: none;
+            padding: 15px 35px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 15px 35px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .btn-secondary svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Floating Coffee Cup */
+        .floating-cup {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 25rem;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 120px 50px;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .menu-card:hover::before {
+            opacity: 1;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(201, 169, 98, 0.3);
+        }
+
+        .menu-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .menu-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .menu-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Features */
+        .features {
+            padding: 120px 50px;
+        }
+
+        .features-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .features-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .feature-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+
+        .feature-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .feature-circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 30s linear infinite reverse;
+        }
+
+        .feature-circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.1) 0%, transparent 70%);
+            border: none;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .feature-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+        }
+
+        .features-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent);
+            min-width: 30px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 50px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .menu, .features, .cta {
+                padding: 80px 20px;
+            }
+
+            .features-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .features-visual {
+                height: 300px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .floating-cup {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">NOVA <span>COFFEE</span></div>
+        <ul class="nav-links">
+            <li><a href="#menu">MENU</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#location">LOCATION</a></li>
+        </ul>
+        <button class="nav-cta">ORDER NOW</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="floating-cup">☕</div>
+        
+        <div class="hero-content">
+            <div class="hero-tag">NOW OPEN 24/7</div>
+            <h1>The Future of <span>Coffee</span> Experience</h1>
+            <p>Redefining coffee culture with precision brewing, sustainable sourcing, and a space designed for the modern creative mind.</p>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary">EXPLORE MENU</button>
+                <button class="btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    WATCH STORY
+                </button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>COFFEE VARIANTS</p>
+                </div>
+                <div class="stat-item">
+                    <h3>12K</h3>
+                    <p>HAPPY CUSTOMERS</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>ORGANIC BEANS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="section-header">
+            <p class="section-tag">OUR SIGNATURE</p>
+            <h2 class="section-title">Featured Menu</h2>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-icon">☕</div>
+                <h3>Nova Espresso</h3>
+                <p>Double shot precision espresso with notes of chocolate and caramel, extracted at optimal pressure.</p>
+                <span class="menu-price">Rp 28.000</span>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">🧊</div>
+                <h3>Crystal Cold Brew</h3>
+                <p>24-hour steeped cold brew with smooth, low-acid profile. Served over crystal clear ice spheres.</p>
+                <span class="menu-price">Rp 35.000</span>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">🥛</div>
+                <h3>Stellar Latte</h3>
+                <p>Oat milk latte with vanilla essence and a touch of star anise. A galaxy in every sip.</p>
+                <span class="menu-price">Rp 38.000</span>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-icon">🫧</div>
+                <h3>Matcha Fusion</h3>
+                <p>Premium ceremonial matcha blended with cold brew. The perfect balance of earth and energy.</p>
+                <span class="menu-price">Rp 42.000</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="about">
+        <div class="features-content">
+            <div class="features-visual">
+                <div class="feature-circle"></div>
+                <div class="feature-circle"></div>
+                <div class="feature-circle"></div>
+                <div class="feature-center">☕</div>
+            </div>
+
+            <div class="features-text">
+                <h2>Crafted for the <span style="color: var(--accent)">Modern</span> Coffee Enthusiast</h2>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-num">01</span>
+                        <div>
+                            <h4>Precision Brewing</h4>
+                            <p>Every cup is brewed with exact temperature and timing, ensuring consistent perfection.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <span class="feature-num">02</span>
+                        <div>
+                            <h4>Sustainable Sourcing</h4>
+                            <p>Direct trade relationships with farmers. Ethical beans, exceptional taste.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <span class="feature-num">03</span>
+                        <div>
+                            <h4>Smart Space</h4>
+                            <p>High-speed WiFi, wireless charging stations, and ambient zones for work or relaxation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-bg"></div>
+        <h2>Ready to Experience<br><span style="color: var(--accent)">the Future?</span></h2>
+        <p>Visit us or order online. Your perfect cup awaits.</p>
+        <button class="btn-primary">ORDER NOW</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">NOVA <span>COFFEE</span></div>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">TikTok</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            const cup = document.querySelector('.floating-cup');
+            
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+            if (cup) {
+                cup.style.transform = `translateY(${-50 + scrolled * 0.05}%)`;
+            }
+        });
+
+        // Button hover effects
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
